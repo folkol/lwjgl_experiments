@@ -9,14 +9,14 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-public class BasicQuad extends Base {
+public class DrawArrayQuad extends Base {
 
     private static int vertexCount;
     private static int vertexArrayId;
     private static int vertexBufferObjectId;
 
     public static void main(String[] args) throws LWJGLException {
-        new BasicQuad().run();
+        new DrawArrayQuad().run();
     }
 
     @Override
