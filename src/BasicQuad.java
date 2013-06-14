@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-public class Main {
+public class BasicQuad {
 
     private static int vertexCount;
     private static int vertexArrayId;
