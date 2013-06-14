@@ -60,5 +60,6 @@ abstract public class Base {
     }
 
     void teardown() {
+        System.err.println("You should override teardown() to release your allocated resources!");
     }
 }
