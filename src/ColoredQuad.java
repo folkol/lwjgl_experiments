@@ -16,6 +16,9 @@ public class ColoredQuad extends Base {
     private static int vertexColorBufferObjectId;
     private int indicesCount;
     private int vertexIndexBufferObject;
+    private int vertexShaderId;
+    private int fragmentShaderId;
+    private int shaderProgramId;
 
     public static void main(String[] args) throws LWJGLException {
         new ColoredQuad().run();
@@ -78,20 +81,36 @@ public class ColoredQuad extends Base {
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 
         GL30.glBindVertexArray(0);
+
+        vertexShaderId = loadShader("ColoredQuadVertex.glsl", GL20.GL_VERTEX_SHADER);
+        fragmentShaderId = loadShader("ColoredQuadFragment.glsl", GL20.GL_FRAGMENT_SHADER);
+        shaderProgramId = GL20.glCreateProgram();
+        GL20.glAttachShader(shaderProgramId, vertexShaderId);
+        GL20.glAttachShader(shaderProgramId, fragmentShaderId);
+        GL20.glLinkProgram(shaderProgramId);
+
+        GL20.glBindAttribLocation(shaderProgramId, 0, "in_Position");
+        GL20.glBindAttribLocation(shaderProgramId, 1, "in_Color");
+        GL20.glValidateProgram(shaderProgramId);
     }
 
     @Override
     void renderScene() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
+        GL20.glUseProgram(shaderProgramId);
+
         GL30.glBindVertexArray(vertexArrayId);
         GL20.glEnableVertexAttribArray(0);
+        GL20.glEnableVertexAttribArray(1);
 
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vertexIndexBufferObject);
 
         GL11.glDrawElements(GL11.GL_TRIANGLES, indicesCount, GL11.GL_UNSIGNED_BYTE, 0);
 
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
+
+        GL20.glDisableVertexAttribArray(1);
         GL20.glDisableVertexAttribArray(0);
         GL30.glBindVertexArray(0);
     }
