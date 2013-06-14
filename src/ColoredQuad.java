@@ -2,21 +2,19 @@ import java.nio.FloatBuffer;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.LWJGLException;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-public class BasicQuad extends Base {
+public class ColoredQuad extends Base {
 
     private static int vertexCount;
     private static int vertexArrayId;
     private static int vertexBufferObjectId;
 
     public static void main(String[] args) throws LWJGLException {
-        new BasicQuad().run();
+        new ColoredQuad().run();
     }
 
     @Override
@@ -58,32 +56,6 @@ public class BasicQuad extends Base {
         GL20.glEnableVertexAttribArray(0);
 
         GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, vertexCount);
-    }
-
-    @Override
-    void updateWorld() {
-
-    }
-
-    @Override
-    void checkInput() {
-        if (Mouse.isButtonDown(0)) {
-            System.out.println("Vänster knapp nere");
-        }
-        if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-            System.out.println("Space nere");
-        }
-    }
-
-    @Override
-    void teardown() {
-        GL20.glDisableVertexAttribArray(0);
-
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
-        GL15.glDeleteBuffers(vertexBufferObjectId);
-
-        GL30.glBindVertexArray(0);
-        GL30.glDeleteVertexArrays(vertexArrayId);
     }
 
 }

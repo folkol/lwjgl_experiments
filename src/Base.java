@@ -7,6 +7,7 @@ abstract public class Base {
     void run() throws LWJGLException {
         Display.setDisplayMode(new DisplayMode(800, 600));
         Display.create();
+        Display.setTitle(this.getClass().getName());
         init();
         while (!Display.isCloseRequested()) {
             checkInput();
