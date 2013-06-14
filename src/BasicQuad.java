@@ -4,35 +4,23 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-public class BasicQuad {
+public class BasicQuad extends Base {
 
     private static int vertexCount;
     private static int vertexArrayId;
     private static int vertexBufferObjectId;
 
     public static void main(String[] args) throws LWJGLException {
-        Display.setDisplayMode(new DisplayMode(800, 600));
-        Display.create();
-        init();
-        while (!Display.isCloseRequested()) {
-            checkInput();
-            updateWorld();
-            renderScene();
-            Display.setVSyncEnabled(true);
-            Display.update();
-        }
-        teardown();
-        Display.destroy();
+        new BasicQuad().run();
     }
 
-    private static void init() {
+    @Override
+    void init() {
         System.out.println("OpenGL version: " + GL11.glGetString(GL11.GL_VERSION));
 
         float[] vertices = {
@@ -62,7 +50,8 @@ public class BasicQuad {
         GL30.glBindVertexArray(0);
     }
 
-    private static void renderScene() {
+    @Override
+    void renderScene() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
         GL30.glBindVertexArray(vertexArrayId);
@@ -71,11 +60,13 @@ public class BasicQuad {
         GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, vertexCount);
     }
 
-    private static void updateWorld() {
+    @Override
+    void updateWorld() {
 
     }
 
-    private static void checkInput() {
+    @Override
+    void checkInput() {
         if (Mouse.isButtonDown(0)) {
             System.out.println("Vänster knapp nere");
         }
@@ -84,7 +75,8 @@ public class BasicQuad {
         }
     }
 
-    private static void teardown() {
+    @Override
+    void teardown() {
         GL20.glDisableVertexAttribArray(0);
 
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
