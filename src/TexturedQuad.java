@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-public class ColoredQuad extends Base {
+public class TexturedQuad extends Base {
 
     private static int vertexArrayId;
     private static int vertexBufferObjectId;
@@ -20,7 +20,7 @@ public class ColoredQuad extends Base {
     private int shaderProgramId;
 
     public static void main(String[] args) throws LWJGLException {
-        new ColoredQuad().run();
+        new TexturedQuad().run();
     }
 
 
