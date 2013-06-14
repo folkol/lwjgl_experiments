@@ -8,15 +8,17 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-public class DrawElementsQuad extends Base {
+public class ColoredQuad extends Base {
 
+    private static int vertexCount;
     private static int vertexArrayId;
     private static int vertexBufferObjectId;
+    private static int vertexColorBufferObjectId;
     private int indicesCount;
     private int vertexIndexBufferObject;
 
     public static void main(String[] args) throws LWJGLException {
-        new DrawElementsQuad().run();
+        new ColoredQuad().run();
     }
 
 
@@ -44,6 +46,17 @@ public class DrawElementsQuad extends Base {
         indicesBuffer.put(indices);
         indicesBuffer.flip();
 
+        float[] colors = {
+                1f, 0f, 0f, 1f,
+                0f, 1f, 0f, 1f,
+                0f, 0f, 1f, 1f,
+                1f, 1f, 1f, 1f };
+        FloatBuffer colorBuffer = BufferUtils.createFloatBuffer(colors.length);
+        colorBuffer.put(colors);
+        colorBuffer.flip();
+
+        vertexCount = 6;
+
         vertexArrayId = GL30.glGenVertexArrays();
         GL30.glBindVertexArray(vertexArrayId);
 
@@ -57,6 +70,12 @@ public class DrawElementsQuad extends Base {
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vertexIndexBufferObject);
         GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indicesBuffer, GL15.GL_STATIC_DRAW);
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
+
+        vertexColorBufferObjectId = GL15.glGenBuffers();
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexColorBufferObjectId);
+        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, colorBuffer, GL15.GL_STATIC_DRAW);
+        GL20.glVertexAttribPointer(1, 4, GL11.GL_FLOAT, false, 0, 0);
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 
         GL30.glBindVertexArray(0);
     }
