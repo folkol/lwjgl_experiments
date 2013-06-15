@@ -13,6 +13,7 @@ abstract public class Base {
         Display.setDisplayMode(new DisplayMode(800, 600));
         Display.create();
         Display.setTitle(this.getClass().getName());
+
         init();
         while (!Display.isCloseRequested()) {
             checkInput();

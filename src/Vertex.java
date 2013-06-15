@@ -35,4 +35,5 @@ public class Vertex {
     public float[] getRGBA() {
         return new float[] { this.rgba[0], this.rgba[1], this.rgba[2], this.rgba[3] };
     }
+
 }
