@@ -81,6 +81,7 @@ public class TexturedAndShadedModel extends Base {
     public void setupQuad() {
         final int numFacets = 4;
         TexturedVertex[] vertices = new TexturedVertex[1 + numFacets];
+        byte[] indices = new byte[3 * numFacets];
 
         TexturedVertex bottom = new TexturedVertex(0f, -1f, 0f, 0f, 0f, 0f, 1f, 0.5f);
 
@@ -96,16 +97,6 @@ public class TexturedAndShadedModel extends Base {
         vertices[3] = v3;
         vertices[4] = v4;
 
-        // }
-
-        FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length * TexturedVertex.elementCount);
-        for (int i = 0; i < vertices.length; i++) {
-            verticesBuffer.put(vertices[i].getElements());
-        }
-        verticesBuffer.flip();
-
-
-        byte[] indices = new byte[3 * numFacets];
         // for (int i = 0; i < numCorners; i++) {
         // 0, 1, 2 };
         indices[0] = 0;
@@ -123,13 +114,22 @@ public class TexturedAndShadedModel extends Base {
         indices[9] = 0;
         indices[10] = 4;
         indices[11] = 1;
+
         indicesCount = indices.length;
 
         ByteBuffer indicesBuffer = BufferUtils.createByteBuffer(indicesCount);
         indicesBuffer.put(indices);
         indicesBuffer.flip();
 
+        // }
+
+        FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length * TexturedVertex.elementCount);
+        for (int i = 0; i < vertices.length; i++) {
+            verticesBuffer.put(vertices[i].getElements());
+        }
+        verticesBuffer.flip();
         vaoId = GL30.glGenVertexArrays();
+
         GL30.glBindVertexArray(vaoId);
 
         vboId = GL15.glGenBuffers();
