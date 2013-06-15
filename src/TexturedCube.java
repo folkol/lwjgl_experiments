@@ -36,7 +36,6 @@ public class TexturedCube extends Base {
     @Override
     void init() {
         GL11.glClearColor(0.4f, 0.6f, 0.9f, 0f);
-        GL11.glViewport(0, 0, 800, 600);
 
         setupQuad();
         setupShaders();
@@ -77,14 +76,14 @@ public class TexturedCube extends Base {
     }
 
     public void setupQuad() {
-        TexturedVertex v0 = new TexturedVertex(-0.5f, 0.5f, 0f, 1f, 0f, 0f, 0f, 0f);
-        TexturedVertex v1 = new TexturedVertex(-0.5f, -0.5f, 0f, 0f, 1f, 0f, 0f, 1f);
-        TexturedVertex v2 = new TexturedVertex(0.5f, -0.5f, 0f, 0, 0, 1, 1f, 1f);
-        TexturedVertex v3 = new TexturedVertex(0.5f, 0.5f, 0f, 1, 1, 1, 1f, 0f);
-        TexturedVertex v4 = new TexturedVertex(-0.5f, 0.5f, -1f, 1f, 0f, 0f, 0f, 0f);
-        TexturedVertex v5 = new TexturedVertex(-0.5f, -0.5f, -1f, 0f, 1f, 0f, 0f, 1f);
-        TexturedVertex v6 = new TexturedVertex(0.5f, -0.5f, -1f, 0, 0, 1, 1f, 1f);
-        TexturedVertex v7 = new TexturedVertex(0.5f, 0.5f, -1f, 1, 1, 1, 1f, 0f);
+        TexturedVertex v0 = new TexturedVertex(-0.5f, 0.5f, 0.5f, 1f, 0f, 0f, 0f, 0f);
+        TexturedVertex v1 = new TexturedVertex(-0.5f, -0.5f, 0.5f, 0f, 1f, 0f, 0f, 1f);
+        TexturedVertex v2 = new TexturedVertex(0.5f, -0.5f, 0.5f, 0, 0, 1, 1f, 1f);
+        TexturedVertex v3 = new TexturedVertex(0.5f, 0.5f, 0.5f, 1, 1, 1, 1f, 0f);
+        TexturedVertex v4 = new TexturedVertex(-0.5f, 0.5f, -0.5f, 1f, 0f, 0f, 0f, 0f);
+        TexturedVertex v5 = new TexturedVertex(-0.5f, -0.5f, -0.5f, 0f, 1f, 0f, 0f, 1f);
+        TexturedVertex v6 = new TexturedVertex(0.5f, -0.5f, -0.5f, 0, 0, 1, 1f, 1f);
+        TexturedVertex v7 = new TexturedVertex(0.5f, 0.5f, -0.5f, 1, 1, 1, 1f, 0f);
 
         TexturedVertex[] vertices = new TexturedVertex[] { v0, v1, v2, v3, v4, v5, v6, v7 };
         FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length * TexturedVertex.elementCount);
