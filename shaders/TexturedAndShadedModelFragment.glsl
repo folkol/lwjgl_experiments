@@ -9,4 +9,5 @@ out vec4 out_Color;
 
 void main(void) {
 	out_Color = 0.5 * pass_Color + texture2D(texture_diffuse, pass_TextureCoord);
+//	out_Color = vec4();
 }

@@ -50,9 +50,6 @@ public class TexturedAndShadedModel extends Base {
 
     @Override
     void renderScene() {
-
-        // rotation += 0.01f;
-
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
         GL20.glUseProgram(pId);
@@ -82,21 +79,31 @@ public class TexturedAndShadedModel extends Base {
     }
 
     public void setupQuad() {
+        final int numEdges = 3;
+        TexturedVertex[] vertices = new TexturedVertex[numEdges];
+
         TexturedVertex v0 = new TexturedVertex(-0.5f, 0.5f, 0.5f, 1f, 0f, 0f, 0f, 0f);
         TexturedVertex v1 = new TexturedVertex(-0.5f, -0.5f, 0.5f, 0f, 1f, 0f, 0f, 1f);
         TexturedVertex v2 = new TexturedVertex(0.5f, -0.5f, 0.5f, 0, 0, 1, 1f, 1f);
-        TexturedVertex v3 = new TexturedVertex(0.5f, 0.5f, 0.5f, 1, 1, 1, 1f, 0f);
-        TexturedVertex v4 = new TexturedVertex(-0.5f, 0.5f, -0.5f, 1f, 0f, 0f, 0f, 0f);
-        TexturedVertex v5 = new TexturedVertex(-0.5f, -0.5f, -0.5f, 0f, 1f, 0f, 0f, 1f);
-        TexturedVertex v6 = new TexturedVertex(0.5f, -0.5f, -0.5f, 0, 0, 1, 1f, 1f);
-        TexturedVertex v7 = new TexturedVertex(0.5f, 0.5f, -0.5f, 1, 1, 1, 1f, 0f);
 
-        TexturedVertex[] vertices = new TexturedVertex[] { v0, v1, v2, v3, v4, v5, v6, v7 };
+        vertices[0] = v0;
+        vertices[1] = v1;
+        vertices[2] = v2;
+
         FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length * TexturedVertex.elementCount);
         for (int i = 0; i < vertices.length; i++) {
             verticesBuffer.put(vertices[i].getElements());
         }
         verticesBuffer.flip();
+
+
+        byte[] indices = {
+                0, 1, 2 };
+        indicesCount = indices.length;
+
+        ByteBuffer indicesBuffer = BufferUtils.createByteBuffer(indicesCount);
+        indicesBuffer.put(indices);
+        indicesBuffer.flip();
 
         vaoId = GL30.glGenVertexArrays();
         GL30.glBindVertexArray(vaoId);
@@ -112,18 +119,6 @@ public class TexturedAndShadedModel extends Base {
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 
         GL30.glBindVertexArray(0);
-
-        byte[] indices = {
-                0, 1, 2,
-                2, 3, 0,
-                4, 5, 6,
-                6, 7, 4
-        };
-        indicesCount = indices.length;
-
-        ByteBuffer indicesBuffer = BufferUtils.createByteBuffer(indicesCount);
-        indicesBuffer.put(indices);
-        indicesBuffer.flip();
 
         vboiId = GL15.glGenBuffers();
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vboiId);

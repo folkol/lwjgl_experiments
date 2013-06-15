@@ -17,7 +17,7 @@ void main(void) {
         	vec4(0.0,         0.0,         0.0, 1.0)
 	    );
 
-	gl_Position = rotation * in_Position;
+	gl_Position = in_Position * rotation;
 	
 	pass_Color = in_Color;
 	pass_TextureCoord = in_TextureCoord;
