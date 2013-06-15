@@ -79,16 +79,24 @@ public class TexturedAndShadedModel extends Base {
     }
 
     public void setupQuad() {
-        final int numEdges = 3;
-        TexturedVertex[] vertices = new TexturedVertex[numEdges];
+        final int numFacets = 4;
+        TexturedVertex[] vertices = new TexturedVertex[1 + numFacets];
 
-        TexturedVertex v0 = new TexturedVertex(-0.5f, 0.5f, 0.5f, 1f, 0f, 0f, 0f, 0f);
-        TexturedVertex v1 = new TexturedVertex(-0.5f, -0.5f, 0.5f, 0f, 1f, 0f, 0f, 1f);
-        TexturedVertex v2 = new TexturedVertex(0.5f, -0.5f, 0.5f, 0, 0, 1, 1f, 1f);
+        TexturedVertex bottom = new TexturedVertex(0f, -1f, 0f, 0f, 0f, 0f, 1f, 0.5f);
 
-        vertices[0] = v0;
+        // for (int i = 0; i < numCorners; i++) {
+        TexturedVertex v1 = new TexturedVertex(0f, 0f, 1f, 1f, 0f, 0f, 0.5f, 0.75f);
+        TexturedVertex v2 = new TexturedVertex(-1f, 0f, 0f, 0, 1, 0, 0.5f, 0.5f);
+        TexturedVertex v3 = new TexturedVertex(0f, 0f, -1f, 0, 0, 1, 0.5f, 0.25f);
+        TexturedVertex v4 = new TexturedVertex(1f, 0f, 0f, 1, 1, 1, 0.5f, 0f);
+
+        vertices[0] = bottom;
         vertices[1] = v1;
         vertices[2] = v2;
+        vertices[3] = v3;
+        vertices[4] = v4;
+
+        // }
 
         FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length * TexturedVertex.elementCount);
         for (int i = 0; i < vertices.length; i++) {
@@ -97,8 +105,24 @@ public class TexturedAndShadedModel extends Base {
         verticesBuffer.flip();
 
 
-        byte[] indices = {
-                0, 1, 2 };
+        byte[] indices = new byte[3 * numFacets];
+        // for (int i = 0; i < numCorners; i++) {
+        // 0, 1, 2 };
+        indices[0] = 0;
+        indices[1] = 1;
+        indices[2] = 2;
+
+        indices[3] = 0;
+        indices[4] = 2;
+        indices[5] = 3;
+
+        indices[6] = 0;
+        indices[7] = 3;
+        indices[8] = 4;
+
+        indices[9] = 0;
+        indices[10] = 4;
+        indices[11] = 1;
         indicesCount = indices.length;
 
         ByteBuffer indicesBuffer = BufferUtils.createByteBuffer(indicesCount);
