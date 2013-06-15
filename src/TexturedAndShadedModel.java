@@ -83,13 +83,13 @@ public class TexturedAndShadedModel extends Base {
         TexturedVertex[] vertices = new TexturedVertex[1 + numFacets];
         byte[] indices = new byte[3 * numFacets];
 
-        TexturedVertex bottom = new TexturedVertex(0f, -1f, 0f, 0f, 0f, 0f, 1f, 0.5f);
+        TexturedVertex bottom = new TexturedVertex(0f, -0.5f, 0f, 0f, 0f, 0f, 1f, 0.5f);
 
         // for (int i = 0; i < numCorners; i++) {
-        TexturedVertex v1 = new TexturedVertex(0f, 0f, 1f, 1f, 0f, 0f, 0.5f, 0.75f);
-        TexturedVertex v2 = new TexturedVertex(-1f, 0f, 0f, 0, 1, 0, 0.5f, 0.5f);
-        TexturedVertex v3 = new TexturedVertex(0f, 0f, -1f, 0, 0, 1, 0.5f, 0.25f);
-        TexturedVertex v4 = new TexturedVertex(1f, 0f, 0f, 1, 1, 1, 0.5f, 0f);
+        TexturedVertex v1 = new TexturedVertex(0f, 0f, 0.5f, 1f, 0f, 0f, 0.5f, 0.75f);
+        TexturedVertex v2 = new TexturedVertex(-0.5f, 0f, 0f, 0, 1, 0, 0.5f, 0.5f);
+        TexturedVertex v3 = new TexturedVertex(0f, 0f, -0.5f, 0, 0, 1, 0.5f, 0.25f);
+        TexturedVertex v4 = new TexturedVertex(0.5f, 0f, 0f, 1, 1, 1, 0.5f, 0f);
 
         vertices[0] = bottom;
         vertices[1] = v1;
@@ -117,7 +117,7 @@ public class TexturedAndShadedModel extends Base {
 
         indicesCount = indices.length;
 
-        ByteBuffer indicesBuffer = BufferUtils.createByteBuffer(indicesCount);
+        ByteBuffer indicesBuffer = BufferUtils.createByteBuffer(indices.length);
         indicesBuffer.put(indices);
         indicesBuffer.flip();
 
