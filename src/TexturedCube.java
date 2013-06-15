@@ -6,6 +6,7 @@ import java.nio.FloatBuffer;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL15;
@@ -43,9 +44,14 @@ public class TexturedCube extends Base {
     }
 
     @Override
+    void updateWorld() {
+        rotation = 0.01f * Mouse.getX();
+    }
+
+    @Override
     void renderScene() {
 
-        rotation += 0.01f;
+        // rotation += 0.01f;
 
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 

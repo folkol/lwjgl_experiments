@@ -8,9 +8,5 @@ in vec2 pass_TextureCoord;
 out vec4 out_Color;
 
 void main(void) {
-	out_Color = pass_Color;
-	// Override out_Color with our texture pixel
-	out_Color = texture2D(texture_diffuse, pass_TextureCoord);
-	out_Color = vec4(1.0, 1.0, 1.0, 1.0);
-	out_Color = gl_FragCoord;
+	out_Color = 0.5 * pass_Color + texture2D(texture_diffuse, pass_TextureCoord);
 }
