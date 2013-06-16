@@ -87,7 +87,7 @@ public class TexturedAndShadedModel extends Base {
         byte[] indices = new byte[2 * 3 * numSides];
 
         TexturedVertex bottom = new TexturedVertex(0f, -0.5f, 0f, 0f, 0f, 0f, 1f, 0.5f);
-        TexturedVertex top = new TexturedVertex(0f, 0.5f, 0f, 0f, 0f, 0f, 1f, 0.5f);
+        TexturedVertex top = new TexturedVertex(0f, 0.5f, 0f, 0f, 0f, 0f, 0f, 0.5f);
 
         // for (int i = 0; i < numCorners; i++) {
         TexturedVertex v1 = new TexturedVertex(0f, 0f, 0.5f, 1f, 0f, 0f, 0.5f, 0.75f);
