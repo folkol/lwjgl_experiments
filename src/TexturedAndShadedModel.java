@@ -38,7 +38,7 @@ public class TexturedAndShadedModel extends Base {
     void init() {
         GL11.glClearColor(0.4f, 0.6f, 0.9f, 0f);
 
-        setupQuad();
+        setupModel();
         setupShaders();
         setupTextures();
     }
@@ -50,8 +50,10 @@ public class TexturedAndShadedModel extends Base {
 
     @Override
     void renderScene() {
-        GL11.glEnable(GL11.GL_CULL_FACE);
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+        // GL11.glEnable(GL11.GL_CULL_FACE);
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GL11.glDepthFunc(GL11.GL_LEQUAL);
+        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
         GL20.glUseProgram(pId);
 
@@ -79,7 +81,7 @@ public class TexturedAndShadedModel extends Base {
         GL20.glUseProgram(0);
     }
 
-    public void setupQuad() {
+    public void setupModel() {
         final int numSides = 4;
         TexturedVertex[] vertices = new TexturedVertex[2 + numSides];
         byte[] indices = new byte[2 * 3 * numSides];

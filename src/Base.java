@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL20;
 abstract public class Base {
 
     void run() throws LWJGLException {
-        Display.setDisplayMode(new DisplayMode(800, 600));
+        Display.setDisplayMode(new DisplayMode(800, 800));
         Display.create();
         Display.setTitle(this.getClass().getName());
 
