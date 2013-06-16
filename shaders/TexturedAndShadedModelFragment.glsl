@@ -9,6 +9,6 @@ out vec4 out_Color;
 
 void main(void) {
 	out_Color = texture2D(texture_diffuse, pass_TextureCoord) * (1 - gl_FragCoord.z);
-	out_Color = vec4((gl_FragCoord.z + 1) / 2, 0, 0, 1);
+//	out_Color = vec4((gl_FragCoord.z + 1) / 2, 0, 0, 1);
 //	out_Color = vec4();
 }

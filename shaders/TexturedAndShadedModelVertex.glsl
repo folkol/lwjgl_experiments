@@ -10,7 +10,7 @@ out vec4 pass_Color;
 out vec2 pass_TextureCoord;
 
 void main(void) {
-	vec3 axis = vec3(0.5f, 0f, 0.5f);
+	vec3 axis = vec3(1f, 0f, 0f);
 	float s = sin(in_Rotation);
 	float c = cos(in_Rotation);
 	float oc = 1.0f - c;

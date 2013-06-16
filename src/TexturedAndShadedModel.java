@@ -79,11 +79,12 @@ public class TexturedAndShadedModel extends Base {
     }
 
     public void setupQuad() {
-        final int numFacets = 4;
-        TexturedVertex[] vertices = new TexturedVertex[1 + numFacets];
-        byte[] indices = new byte[3 * numFacets];
+        final int numSides = 4;
+        TexturedVertex[] vertices = new TexturedVertex[2 + numSides];
+        byte[] indices = new byte[2 * 3 * numSides];
 
         TexturedVertex bottom = new TexturedVertex(0f, -0.5f, 0f, 0f, 0f, 0f, 1f, 0.5f);
+        TexturedVertex top = new TexturedVertex(0f, 0.5f, 0f, 0f, 0f, 0f, 1f, 0.5f);
 
         // for (int i = 0; i < numCorners; i++) {
         TexturedVertex v1 = new TexturedVertex(0f, 0f, 0.5f, 1f, 0f, 0f, 0.5f, 0.75f);
@@ -96,6 +97,7 @@ public class TexturedAndShadedModel extends Base {
         vertices[2] = v2;
         vertices[3] = v3;
         vertices[4] = v4;
+        vertices[5] = top;
 
         // for (int i = 0; i < numCorners; i++) {
         // 0, 1, 2 };
@@ -114,6 +116,22 @@ public class TexturedAndShadedModel extends Base {
         indices[9] = 0;
         indices[10] = 4;
         indices[11] = 1;
+
+        indices[12] = 5;
+        indices[13] = 2;
+        indices[14] = 1;
+
+        indices[15] = 5;
+        indices[16] = 3;
+        indices[17] = 2;
+
+        indices[18] = 5;
+        indices[19] = 4;
+        indices[20] = 3;
+
+        indices[21] = 5;
+        indices[22] = 1;
+        indices[23] = 4;
 
         indicesCount = indices.length;
 
